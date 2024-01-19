@@ -1,0 +1,8 @@
+{
+  "name": "nauval-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kikilukm/nauval-react.git",
+  "author": "Kiki Lukman Hakim <kiki.lukmanhakim@gmail.com>",
+  "license": "MIT"
+}
