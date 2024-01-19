@@ -1,8 +1,14 @@
 {
-  "name": "nauval-react",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/kikilukm/nauval-react.git",
-  "author": "Kiki Lukman Hakim <kiki.lukmanhakim@gmail.com>",
-  "license": "MIT"
+	"name": "nauval-react",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/kikilukm/nauval-react.git",
+	"author": "Kiki Lukman Hakim <kiki.lukmanhakim@gmail.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"@babel/preset-react": "^7.23.3"
+	},
+	"scripts": {
+		"build": "babel src --out-dir dist"
+	}
 }
