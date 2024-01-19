@@ -5,12 +5,14 @@
 	"repository": "https://github.com/kikilukm/nauval-react.git",
 	"author": "Kiki Lukman Hakim <kiki.lukmanhakim@gmail.com>",
 	"license": "MIT",
-	"devDependencies": {
-		"@babel/preset-react": "^7.23.3",
-		"@babel/cli": "^7.23.4",
-		"@babel/core": "^7.23.7"
-	},
 	"scripts": {
-		"build": "babel src --out-dir public"
+		"build": "babel src --out-dir public",
+		"start": "lite-server --baseDir public"
+	},
+	"dependencies": {
+		"lite-server": "^2.6.1",
+		"@babel/cli": "^7.23.4",
+		"@babel/core": "^7.23.7",
+		"@babel/preset-react": "^7.23.3"
 	}
 }
