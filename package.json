@@ -7,7 +7,8 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "babel src --out-dir public",
-		"start": "lite-server --baseDir public"
+		"watch": "lite-server --baseDir public",
+		"start": "yarn build && yarn watch"
 	},
 	"dependencies": {
 		"lite-server": "^2.6.1",

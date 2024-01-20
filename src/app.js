@@ -4,14 +4,21 @@ function Hello(props) {
 
 const root = document.querySelector("#root");
 
-const element = (
-	<>
-		<Hello name="Kiki Lukman Hakim" />
-		<Hello name="Kiki Hakim" />
-		<Hello name="Kiki Lukman " />
-	</>
-);
+function tick() {
+    
+    const element = (
+        <>
+            <Hello name="Kiki"/>
+            <h1>Waktu Sekarang Menunjukan:</h1>
+            <h2>{new Date().toLocaleTimeString('en-US')}</h2>
+        </>
+    );
+    
+    
+    
+    ReactDOM.render(element, root);
+}
 
-
-
-ReactDOM.render(element, root);
+setInterval(() => {tick()
+    
+}, 1000);
