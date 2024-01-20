@@ -14,6 +14,7 @@
 	"scripts": {
 		"build": "babel src --out-dir public",
 		"serve": "lite-server --baseDir public",
-		"start": "yarn build && yarn serve"
-	}
+		"start": "yarn build & yarn serve"
+	},
+	"devDependencies": {}
 }

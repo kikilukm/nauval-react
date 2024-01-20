@@ -1,6 +1,6 @@
 document.querySelector("#root");
 function App() {
-  return /*#__PURE__*/React.createElement("h1", null, "Hello World");
+  return /*#__PURE__*/React.createElement("h1", null, "Hello World? waduh pusing aing mah kumaha di sini lur");
 }
 const element = /*#__PURE__*/React.createElement(App, null);
-createRoot(element, root);
+ReactDOM.render(element, root);
