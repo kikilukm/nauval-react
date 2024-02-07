@@ -19,13 +19,17 @@ function App() {
 		setActivity("");
 	}
 
-	function deleteHandler() {
-		console.log('hapus')
+	function removeTodoHandler(todoId) {
+		const filterTodos = todos.filter(function (todos) {
+			return todos.id !== todoId;
+		});
+		setTodos(filterTodos);
 	}
 
 	return (
 		<>
-			<h1>Todo todos Lite</h1>
+			<h1 className="title">Todo Lite ✅</h1>
+			<img src="https://th.bing.com/th/id/R.baa8b83e6e6ce6a2dcd86082b59effca?rik=rUAlj4EmP%2f4ZLg&riu=http%3a%2f%2f4.bp.blogspot.com%2f-8HfLPbR1n0M%2fVLREeYjL0pI%2fAAAAAAAAAb8%2fCxNo7Qn3vG0%2fs1600%2fTo-Do%2bList.png&ehk=8KCQGCqkoAv3Jb2lkwYw94QfJ71bxVu1ywp65%2b6%2bBD4%3d&risl=&pid=ImgRaw&r=0" />
 			<form onSubmit={submitHandler}>
 				<input
 					type="text"
@@ -35,14 +39,28 @@ function App() {
 						setActivity(event.target.value);
 					}}
 				></input>
-				<button type="submit">SUBMIT</button>
+				<button className="sbmt-button" type="submit">
+					SUBMIT
+				</button>
 			</form>
 			<ul>
 				{todos.map(function (todo) {
 					return (
 						<li key={todo.id}>
 							{todo.activity}
-							<button onClick={deleteHandler}>DELETE</button>
+							<button
+								// className="button"
+								// onClick={removeTodoHandler.bind(this, todo.id)}
+							>
+								{" "}
+								EDIT
+							</button>
+							<button
+								className="button"
+								onClick={removeTodoHandler.bind(this, todo.id)}
+							>
+								DELETE
+							</button>
 						</li>
 					);
 				})}
