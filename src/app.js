@@ -4,6 +4,7 @@ function App() {
 	const [activity, setActivity] = React.useState("");
 	const [edit, setEdit] = React.useState({});
 	const [todos, setTodos] = React.useState([]);
+	const [message, setMessage] = React.useState("");
 
 	function generateId() {
 		return Date.now();
@@ -11,9 +12,12 @@ function App() {
 	function saveTodoHandler(event) {
 		event.preventDefault();
 
+		if (!activity) {
+			return setMessage("Aktivitas tidak boleh kosong ....!!!!");
+		}
 		if (edit.id) {
 			const updatedTodo = {
-				id: edit.id,
+				...edit,
 				activity: activity,
 			};
 
@@ -33,6 +37,7 @@ function App() {
 			{
 				id: generateId(),
 				activity: activity,
+				done: false,
 			},
 		]);
 
@@ -55,6 +60,23 @@ function App() {
 	function cancelEditHandler() {
 		setActivity("");
 		setEdit({});
+		setMessage("");
+	}
+
+	function doneTodoHandler(todo) {
+		const updatedTodo = {
+			...todo,
+			done: todo.done ? false : true,
+		};
+		const editTodoIndex = todos.findIndex(function (currentTodo) {
+			return currentTodo.id === todo.id;
+		});
+
+		const updatedTodos = [...todos];
+		updatedTodos[editTodoIndex] = updatedTodo;
+
+		setTodos(updatedTodos);
+		// console.log(updatedTodos)
 	}
 
 	return (
@@ -65,9 +87,10 @@ function App() {
 				src="https://th.bing.com/th/id/R.baa8b83e6e6ce6a2dcd86082b59effca?rik=rUAlj4EmP%2f4ZLg&riu=http%3a%2f%2f4.bp.blogspot.com%2f-8HfLPbR1n0M%2fVLREeYjL0pI%2fAAAAAAAAAb8%2fCxNo7Qn3vG0%2fs1600%2fTo-Do%2bList.png&ehk=8KCQGCqkoAv3Jb2lkwYw94QfJ71bxVu1ywp65%2b6%2bBD4%3d&risl=&pid=ImgRaw&r=0"
 			/>
 			<form onSubmit={saveTodoHandler}>
+				{message && <p style={{ color: "red" }}>{message}</p>}
 				<input
 					type="text"
-					placeholder="Add your plan here"
+					placeholder="Tambahkan disini"
 					value={activity}
 					onChange={function (event) {
 						setActivity(event.target.value);
@@ -82,28 +105,44 @@ function App() {
 					</button>
 				)}
 			</form>
-			<ul>
-				{todos.map(function (todo) {
-					return (
-						<li key={todo.id}>
-							{todo.activity}
-							<button
-								className="button"
-								onClick={editTodoHandler.bind(this, todo)}
-							>
-								UBAH
-							</button>
-
-							<button
-								className="button"
-								onClick={removeTodoHandler.bind(this, todo.id)}
-							>
-								HAPUS
-							</button>
-						</li>
-					);
-				})}
-			</ul>
+			{todos.length > 0 ? (
+				<ul>
+					{todos.map(function (todo) {
+						return (
+							<li key={todo.id}>
+								<input
+									type="checkbox"
+									onChange={doneTodoHandler.bind(this, todo)}
+									checked={todo.done}
+								></input>
+								{todo.activity}
+								{todo.done
+									? " (Sudah Selesai)"
+									: " (Belum Selesai)"}
+								<button
+									className="button"
+									onClick={editTodoHandler.bind(this, todo)}
+								>
+									UBAH
+								</button>
+								<button
+									className="button"
+									onClick={removeTodoHandler.bind(
+										this,
+										todo.id
+									)}
+								>
+									HAPUS
+								</button>
+							</li>
+						);
+					})}
+				</ul>
+			) : (
+				<p>
+					<i>Belum ada aktivitas..</i>
+				</p>
+			)}
 		</>
 	);
 }
